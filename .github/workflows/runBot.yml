@@ -1,43 +1,43 @@
-name: Cybersecurity RSS Bot
+# name: Cybersecurity RSS Bot
 
-on:
-  schedule:
-    # Run every 12 hours (adjust as needed)
-    - cron: '0 */12 * * *'
+# on:
+#   schedule:
+#     # Run every 12 hours (adjust as needed)
+#     - cron: '0 */12 * * *'
   
-  # Also allow manual triggering
-  workflow_dispatch:
+#   # Also allow manual triggering
+#   workflow_dispatch:
 
-jobs:
-  run-rss-bot:
-    runs-on: ubuntu-latest
+# jobs:
+#   run-rss-bot:
+#     runs-on: ubuntu-latest
     
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v3
     
-    # Set up Python
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
+#     # Set up Python
+#     - name: Set up Python
+#       uses: actions/setup-python@v4
+#       with:
+#         python-version: '3.9'
     
-    # Install required packages
-    - name: Install dependencies
-      run: |
-        pip install feedparser requests
+#     # Install required packages
+#     - name: Install dependencies
+#       run: |
+#         pip install feedparser requests
     
-    # Run your RSS bot script
-    - name: Run Multi-Channel RSS Bot
-      env:
-        # All webhook URLs for different channels
-        CRYPTO_WEBHOOK_URL: ${{ secrets.CRYPTO_WEBHOOK_URL }}
-        MOBILE_WEBHOOK_URL: ${{ secrets.MOBILE_WEBHOOK_URL }}
-        WEB_WEBHOOK_URL: ${{ secrets.WEB_WEBHOOK_URL }}
-        FORENSICS_WEBHOOK_URL: ${{ secrets.FORENSICS_WEBHOOK_URL }}
-        OSINT_WEBHOOK_URL: ${{ secrets.OSINT_WEBHOOK_URL }}
-        MATLAB_WEBHOOK_URL: ${{ secrets.MATLAB_WEBHOOK_URL }}
-        WRITEUPS_WEBHOOK_URL: ${{ secrets.WRITEUPS_WEBHOOK_URL }}
-        CTF_WEBHOOK_URL: ${{ secrets.CTF_WEBHOOK_URL }}
-      run: |
-        python rss_bot.py
+#     # Run your RSS bot script
+#     - name: Run Multi-Channel RSS Bot
+#       env:
+#         # All webhook URLs for different channels
+#         CRYPTO_WEBHOOK_URL: ${{ secrets.CRYPTO_WEBHOOK_URL }}
+#         MOBILE_WEBHOOK_URL: ${{ secrets.MOBILE_WEBHOOK_URL }}
+#         WEB_WEBHOOK_URL: ${{ secrets.WEB_WEBHOOK_URL }}
+#         FORENSICS_WEBHOOK_URL: ${{ secrets.FORENSICS_WEBHOOK_URL }}
+#         OSINT_WEBHOOK_URL: ${{ secrets.OSINT_WEBHOOK_URL }}
+#         MATLAB_WEBHOOK_URL: ${{ secrets.MATLAB_WEBHOOK_URL }}
+#         WRITEUPS_WEBHOOK_URL: ${{ secrets.WRITEUPS_WEBHOOK_URL }}
+#         CTF_WEBHOOK_URL: ${{ secrets.CTF_WEBHOOK_URL }}
+#       run: |
+#         python rss_bot.py
