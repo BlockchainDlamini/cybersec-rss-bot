@@ -1,14 +1,10 @@
-# .github/workflows/rss-bot.yml
-# This file tells GitHub Actions to run your RSS bot automatically
-
 name: Cybersecurity RSS Bot
 
-# When to run the script
 on:
   schedule:
     # Run every 6 hours (adjust as needed)
     # Format: minute hour day month day-of-week
-    - cron: '0 */6 * * *'
+    - cron: '0 */12 * * *'
   
   # Also allow manual triggering
   workflow_dispatch:
@@ -18,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    # Download your code from GitHub
     - name: Checkout code
       uses: actions/checkout@v3
     
