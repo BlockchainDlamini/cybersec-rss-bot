@@ -2,8 +2,7 @@ name: Cybersecurity RSS Bot
 
 on:
   schedule:
-    # Run every 6 hours (adjust as needed)
-    # Format: minute hour day month day-of-week
+    # Run every 12 hours (adjust as needed)
     - cron: '0 */12 * * *'
   
   # Also allow manual triggering
