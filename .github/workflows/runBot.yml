@@ -1,0 +1,49 @@
+# .github/workflows/rss-bot.yml
+# This file tells GitHub Actions to run your RSS bot automatically
+
+name: Cybersecurity RSS Bot
+
+# When to run the script
+on:
+  schedule:
+    # Run every 6 hours (adjust as needed)
+    # Format: minute hour day month day-of-week
+    - cron: '0 */6 * * *'
+  
+  # Also allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  run-rss-bot:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Download your code from GitHub
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    # Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    # Install required packages
+    - name: Install dependencies
+      run: |
+        pip install feedparser requests
+    
+    # Run your RSS bot script
+    - name: Run Multi-Channel RSS Bot
+      env:
+        # All webhook URLs for different channels
+        CRYPTO_WEBHOOK_URL: ${{ secrets.CRYPTO_WEBHOOK_URL }}
+        MOBILE_WEBHOOK_URL: ${{ secrets.MOBILE_WEBHOOK_URL }}
+        WEB_WEBHOOK_URL: ${{ secrets.WEB_WEBHOOK_URL }}
+        FORENSICS_WEBHOOK_URL: ${{ secrets.FORENSICS_WEBHOOK_URL }}
+        OSINT_WEBHOOK_URL: ${{ secrets.OSINT_WEBHOOK_URL }}
+        MATLAB_WEBHOOK_URL: ${{ secrets.MATLAB_WEBHOOK_URL }}
+        WRITEUPS_WEBHOOK_URL: ${{ secrets.WRITEUPS_WEBHOOK_URL }}
+        CTF_WEBHOOK_URL: ${{ secrets.CTF_WEBHOOK_URL }}
+      run: |
+        python rss_bot.py
